@@ -10,11 +10,13 @@ spring:
       ddl-auto: update
 
 server:
-  port: 9010
+  port: 0 # Permitir que Railway asigne un puerto dinámico
 
 eureka:
   client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+    service-url:
+      defaultZone: https://service-registry-production-8dd6.up.railway.app/eureka/
+    register-with-eureka: true # Permitir que se registre en Eureka
+    fetch-registry: true # Obtener la lista de servicios desde Eureka
   instance:
-    hostname: localhost
+    prefer-ip-address: true # Usar IP en lugar de hostname para evitar problemas de DNS
