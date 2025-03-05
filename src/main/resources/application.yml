@@ -13,10 +13,13 @@ server:
   port: 0 # Permitir que Railway asigne un puerto dinámico
 
 eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+    prefer-ip-address: true # Usar IP en lugar de hostname
+    metadata-map:
+      management.context-path: /
   client:
     service-url:
       defaultZone: https://service-registry-production-8dd6.up.railway.app/eureka/
-    register-with-eureka: true # Permitir que se registre en Eureka
-    fetch-registry: true # Obtener la lista de servicios desde Eureka
-  instance:
-    prefer-ip-address: true # Usar IP en lugar de hostname para evitar problemas de DNS
+    register-with-eureka: true
+    fetch-registry: true
